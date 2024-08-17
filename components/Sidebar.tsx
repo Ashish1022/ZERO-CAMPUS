@@ -1,0 +1,34 @@
+"use client"
+
+
+import { sidebarLinks } from '@/constants'
+import { cn } from '@/lib/utils'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import React from 'react'
+
+const Sidebar = () => {
+
+  const pathName = usePathname();
+
+  return (
+    <section className='sticky left-0 top-0 flex h-screen w-fit flex-col justify-between bg-dark-1 p-3 pt-20 text-white-1 max-sm:hidden lg:w-[250px]'>
+      <div className='flex flex-1 flex-col gap-2'>
+        {sidebarLinks.map(({route, label, imgUrl})=>{
+
+          const isActive = pathName === route || route.startsWith(`${route}/`)
+
+          return <Link href={route} key={route} className={cn('flex gap-4 items-center p-4 rounded-lg justify-start',{
+            'bg-blue-1':isActive
+          })}>
+            <Image src={imgUrl} alt='img' width={23} height={23}/>
+            <p className='text-md font-normal max-lg:hidden text-white'>{label}</p>
+          </Link>
+        })}
+      </div>
+    </section>
+  )
+}
+
+export default Sidebar
