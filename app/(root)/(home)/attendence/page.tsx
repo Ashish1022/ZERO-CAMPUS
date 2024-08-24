@@ -1,9 +1,174 @@
-import React from 'react'
+"use client"
+
+import * as React from "react"
+import { format } from "date-fns"
+import { Calendar as CalendarIcon } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import StudentAttendanceModal from "@/components/StudentAttendanceModal"
+import { useState } from "react"
+import { useQueries, useQuery } from "convex/react"
+import { api } from "@/convex/_generated/api"
+import StudentAttendanceCard from "@/components/StudentAttendanceCard"
+
+const formSchema = z.object({
+  username: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+})
 
 const Attendence = () => {
+
+  const [date, setDate] = React.useState<Date>();
+  const [showStudents, setShowStudents] = useState(false);
+  const students = useQuery(api.student.getAllStudents);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: "",
+    },
+  })
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
+  }
+
+  const handleClick = () => {
+    setShowStudents(!showStudents)
+  }
+
   return (
-    <section className='flex size-full flex-col gap-10 text-white'>
-      <h1 className='text-3xl font-bold'>Attendence</h1>
+    <section className='flex size-full flex-col gap-3 text-white'>
+      <div>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <div className="flex gap-5 w-full max-md:flex-col">
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem className="md:w-[25%]">
+                    <FormLabel className="font-bold tracking-wide text-[16px]">Select Class</FormLabel>
+                    <FormControl>
+                      <Select>
+                        <SelectTrigger className="">
+                          <SelectValue placeholder="Select Class" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-dark-1">
+                          <SelectItem value="light" className="text-white">Class 1</SelectItem>
+                          <SelectItem value="dark" className="text-white">Class 2</SelectItem>
+                          <SelectItem value="system" className="text-white">Class 3</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem className="md:w-[25%]">
+                    <FormLabel className="font-bold tracking-wide text-[16px]">Attendance Type</FormLabel>
+                    <FormControl>
+                      <Select>
+                        <SelectTrigger className="">
+                          <SelectValue placeholder="Select Class" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-dark-1">
+                          <SelectItem value="light" className="text-white">Class 1</SelectItem>
+                          <SelectItem value="dark" className="text-white">Class 2</SelectItem>
+                          <SelectItem value="system" className="text-white">Class 3</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem className="md:w-[25%] flex flex-col">
+                    <FormLabel className="font-bold tracking-wide text-[16px]">Attendance Date</FormLabel>
+                    <FormControl>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant={"outline"}
+                            className={cn(
+                              "w-[280px] justify-start text-left font-normal",
+                              !date && "text-muted-foreground"
+                            )}
+                          >
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {date ? format(date, "PPP") : <span>Pick a date</span>}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0">
+                          <Calendar
+                            mode="single"
+                            selected={date}
+                            onSelect={setDate}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button className="bg-dark-4 md:mx-2 md:w-[25%] md:mt-8 max-md:mt-2 border" onClick={handleClick}>Take Attendence</Button>
+            </div>
+          </form>
+        </Form>
+        <div>
+          {showStudents ? (
+            <div className="grid grid-cols-3 gap-2 sm:grid-cols-3 lg:grid-cols-6 2xl:grid-cols-5 mt-12">
+              {students?.map(({_id, firstname, lastname, imageUrl})=>(
+                <StudentAttendanceCard firstname={firstname} lastname={lastname} imageUrl={imageUrl}/>
+              ))}
+            </div>
+          ):(
+            <></>
+          )}
+        </div>
+      </div>
     </section>
   )
 }
