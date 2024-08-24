@@ -7,43 +7,54 @@ import { useRouter } from 'next/navigation';
 import MeetingModal from './MeetingModal';
 import { useUser } from '@clerk/nextjs';
 import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk';
+import { useToast } from './ui/use-toast';
 
 
 const MeetingBox = () => {
 
     const [meetingState, setMeetingState] = useState<'isScheduleMeeting' | 'isJoiningMeeting' | 'isInstantMeeting' | undefined>();
 
+    const { toast } = useToast()
+
     const [callDetails, setCallDetails] = useState<Call>()
 
     const router = useRouter();
 
-    const {user} = useUser()
+    const { user } = useUser()
 
     const client = useStreamVideoClient();
 
     const [values, setValues] = useState({
         dateTime: new Date,
-        description:'',
-        link:''
+        description: '',
+        link: ''
     })
 
-    const createMeeting = async() => {
-        if(!client || !user) return;
+    const createMeeting = async () => {
+        if (!client || !user) return;
 
-        try{
+        try {
+
+            if (!values.dateTime) {
+                toast({
+                    title: 'Please select date and time'
+                })
+                return
+            }
+
             const id = crypto.randomUUID();
             const call = client.call('default', id)
 
-            if(!call) throw new Error('Failed to create call')
+            if (!call) throw new Error('Failed to create call')
 
             const startsAt = values.dateTime.toISOString() || new Date(Date.now()).toISOString()
 
             const description = values.description || 'InstantMeeting'
 
             await call.getOrCreate({
-                data:{
+                data: {
                     starts_at: startsAt,
-                    custom:{
+                    custom: {
                         description
                     }
                 }
@@ -51,11 +62,18 @@ const MeetingBox = () => {
 
             setCallDetails(call)
 
-            if(!values.description){
+            if (!values.description) {
                 router.push(`/meeting/${call.id}`)
             }
-        }catch(error){
+
+            toast({
+                title:'Meeting created'
+            })
+        } catch (error) {
             console.log(error)
+            toast({
+                title: 'Failed to create meeting'
+            })
         }
     }
 
@@ -90,8 +108,8 @@ const MeetingBox = () => {
                 className='bg-yellow-1'
             />
             <MeetingModal
-                isOpen={meetingState==='isInstantMeeting'}
-                onClose={()=>setMeetingState(undefined)}
+                isOpen={meetingState === 'isInstantMeeting'}
+                onClose={() => setMeetingState(undefined)}
                 title='Start an instant meeting'
                 className='text-center'
                 buttonText='Start meeting'
