@@ -1,3 +1,5 @@
+import StreamVideoProvider from "@/providers/StreamClientProvider";
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -5,7 +7,9 @@ export default function RootLayout({
 }>) {
     return (
         <main>
-            {children}
+            <StreamVideoProvider>
+                {children}
+            </StreamVideoProvider>
         </main>
     );
 }
