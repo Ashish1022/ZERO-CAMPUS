@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+html,body,:root{
+  color-scheme: dark;
+}
+
 @layer utilities {
   .input-class {
     @apply text-[16px] placeholder:text-[16px] bg-dark-1 rounded-[6px] placeholder:text-gray-600 border-none text-gray-600;

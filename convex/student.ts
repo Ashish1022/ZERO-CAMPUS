@@ -86,3 +86,12 @@ export const getAllStudents = query({
         return students;
     },
 });
+
+export const getStudentById = query({
+    args:{
+        studentId: v.id('student')
+    },
+    handler: async(ctx, args) => {
+        return await ctx.db.get(args.studentId)
+    }
+})

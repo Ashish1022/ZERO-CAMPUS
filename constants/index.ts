@@ -71,7 +71,8 @@ export const students = [
         studentID: 1001,
         name: 'Ashish Jadhav',
         father: 'Suresh',
-        attend: 'Not specified'
+        attend: 'Not specified',
+        image: '/images/avatar-3.png'
     },
     {
         studentID: 1001,
