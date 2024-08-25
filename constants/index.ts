@@ -33,78 +33,91 @@ export const sidebarLinks = [
 
 export const sidebarLinksMeeting = [
     {
-      imgURL: '/icons/Home.svg',
-      route: '/',
-      label: 'Home',
-    },
-  
-    {
-      imgURL: '/icons/upcoming.svg',
-      route: '/upcoming',
-      label: 'Upcoming',
+        imgURL: '/icons/Home.svg',
+        route: '/',
+        label: 'Home',
     },
     {
-      imgURL: '/icons/previous.svg',
-      route: '/previous',
-      label: 'Previous',
+        imgURL: '/icons/guide.svg',
+        route: '/mentor',
+        label: 'Meetings'
+    },
+
+    {
+        imgURL: '/icons/upcoming.svg',
+        route: '/upcoming',
+        label: 'Upcoming',
     },
     {
-      imgURL: '/icons/Video.svg',
-      route: '/recordings',
-      label: 'Recordings',
+        imgURL: '/icons/previous.svg',
+        route: '/previous',
+        label: 'Previous',
     },
     {
-      imgURL: '/icons/add-personal.svg',
-      route: '/personal-room',
-      label: 'Personal Room',
+        imgURL: '/icons/Video.svg',
+        route: '/recordings',
+        label: 'Recordings',
     },
-  ];
-  
+    {
+        imgURL: '/icons/add-personal.svg',
+        route: '/personal-room',
+        label: 'Personal Room',
+    },
+];
+
 
 export const students = [
     {
-        studentID:1001,
-        name:'Ashish Jadhav',
-        father:'Suresh',
-        attend:'Not specified'
+        studentID: 1001,
+        name: 'Ashish Jadhav',
+        father: 'Suresh',
+        attend: 'Not specified'
     },
     {
-        studentID:1001,
-        name:'Ashish Jadhav',
-        father:'Suresh',
-        attend:'Not specified'
+        studentID: 1001,
+        name: 'Ashish Jadhav',
+        father: 'Suresh',
+        attend: 'Not specified'
     },
     {
-        studentID:1001,
-        name:'Ashish Jadhav',
-        father:'Suresh',
-        attend:'Not specified'
+        studentID: 1001,
+        name: 'Ashish Jadhav',
+        father: 'Suresh',
+        attend: 'Not specified'
     },
     {
-        studentID:1001,
-        name:'Ashish Jadhav',
-        father:'Suresh',
-        attend:'Not specified'
+        studentID: 1001,
+        name: 'Ashish Jadhav',
+        father: 'Suresh',
+        attend: 'Not specified'
     },
 ]
 
 export const teacher = [
-    {   
+    {
         teacherId: 1001,
-        name:'Ashish Jadhav',
-        email:'ashishjadhav9900@gmail.com',
-        contact:'7400106790'
+        name: 'Ashish Jadhav',
+        email: 'ashishjadhav9900@gmail.com',
+        contact: '7400106790'
     },
     {
         teacherId: 1002,
-        name:'Ashish Jadhav',
-        email:'ashishjadhav9900@gmail.com',
-        contact:'7400106790'
+        name: 'Ashish Jadhav',
+        email: 'ashishjadhav9900@gmail.com',
+        contact: '7400106790'
     },
     {
         teacherId: 1003,
-        name:'Ashish Jadhav',
-        email:'ashishjadhav9900@gmail.com',
-        contact:'7400106790'
+        name: 'Ashish Jadhav',
+        email: 'ashishjadhav9900@gmail.com',
+        contact: '7400106790'
     },
 ]
+
+export const avatarImages = [
+    '/images/avatar-1.jpeg',
+    '/images/avatar-2.jpeg',
+    '/images/avatar-3.png',
+    '/images/avatar-4.png',
+    '/images/avatar-5.png',
+];
