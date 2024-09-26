@@ -33,7 +33,7 @@ export const sidebarLinks = [
 
 export const sidebarLinksMeeting = [
     {
-        imgURL: '/icons/Home.svg',
+        imgURL: '/icons/home.svg',
         route: '/',
         label: 'Home',
     },
