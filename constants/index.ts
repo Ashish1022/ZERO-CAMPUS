@@ -4,11 +4,11 @@ export const sidebarLinks = [
         route: '/',
         label: 'Home'
     },
-    {
-        imgUrl: '/icons/classes.svg',
-        route: '/classes',
-        label: 'Classes'
-    },
+    // {
+    //     imgUrl: '/icons/classes.svg',
+    //     route: '/classes',
+    //     label: 'Classes'
+    // },
     {
         imgUrl: '/icons/teacher.svg',
         route: '/teachers',

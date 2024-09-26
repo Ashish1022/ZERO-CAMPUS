@@ -34,7 +34,7 @@ const Students = ({ searchParams: { search} }: { searchParams : { search: string
                 <p className='max-md:text-[14px]'>{studentId}</p>
               </div>
               <div>
-                <p className='max-md:text-[14px] cursor-pointer' onClick={()=>router.push(`student/${_id}`)}>{firstname} {lastname}</p>
+                <p className='text-[14px] cursor-pointer' onClick={()=>router.push(`student/${_id}`)}>{firstname} {lastname}</p>
               </div>
               <div className='max-md:hidden'>
                 <p>{fathername}</p>

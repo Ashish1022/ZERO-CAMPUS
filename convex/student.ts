@@ -12,6 +12,11 @@ export const createStudent = mutation({
         address: v.string(),
         imageUrl: v.string(),
         imageStorageId: v.optional(v.id("_storage")),
+        ip: v.number(),
+        adsa: v.number(),
+        eeb: v.number(),
+        se: v.number(),
+        cns: v.number(),
     },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
@@ -35,7 +40,12 @@ export const createStudent = mutation({
             studentId: args.studentId,
             class: args.class,
             address: args.address,
-            imageUrl: args.imageUrl
+            imageUrl: args.imageUrl,
+            ip: args.ip,
+            adsa: args.adsa,
+            eeb: args.eeb,
+            se: args.se,
+            cns: args.cns,
         })
     }
 })
@@ -93,5 +103,41 @@ export const getStudentById = query({
     },
     handler: async(ctx, args) => {
         return await ctx.db.get(args.studentId)
+    }
+})
+
+export const markAttendance = mutation({
+    args:{
+        studentId: v.id('student'),
+    },
+    handler: async(ctx, args) => {
+
+        const student = await ctx.db.get(args.studentId);
+
+        await ctx.db.patch(args.studentId, {
+            ip: student?.ip! + 1,
+            cns: student?.cns! + 1,
+            se: student?.se! + 1,
+            adsa: student?.adsa! + 1,
+            eeb: student?.eeb! + 1,
+        })
+    }
+})
+
+export const cancelAttendance = mutation({
+    args:{
+        studentId: v.id('student'),
+    },
+    handler: async(ctx, args) => {
+
+        const student = await ctx.db.get(args.studentId);
+
+        await ctx.db.patch(args.studentId, {
+            ip: student?.ip! - 1,
+            cns: student?.cns! - 1,
+            se: student?.se! - 1,
+            adsa: student?.adsa! - 1,
+            eeb: student?.eeb! - 1,
+        })
     }
 })

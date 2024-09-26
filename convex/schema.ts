@@ -15,6 +15,11 @@ export default defineSchema({
         address: v.string(),
         imageUrl: v.string(),
         imageStorageId: v.optional(v.id("_storage")),
+        ip: v.number(),
+        adsa: v.number(),
+        eeb: v.number(),
+        se: v.number(),
+        cns: v.number(),
     })
         .searchIndex("by_firstname", { searchField: 'firstname' })
         .searchIndex("by_lastname", { searchField: 'lastname' })

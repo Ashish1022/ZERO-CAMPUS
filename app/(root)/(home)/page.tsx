@@ -1,4 +1,5 @@
 import HomeBox from '@/components/HomeBox'
+import Image from 'next/image'
 import React from 'react'
 
 const Home = () => {
@@ -9,22 +10,31 @@ const Home = () => {
   const date = (new Intl.DateTimeFormat('en-us', { dateStyle: 'full' })).format(now)
 
   return (
-    <section className='flex size-full flex-col gap-3 text-white'>
-      <div className='h-[250px] w-full rounded-[20px] bg-hero bg-cover'>
-        <div className='flex h-full flex-col justify-between max-md:px-5 max-md:py-8 lg:p-11'>
-          <h2 className='glassmorphism max-w-[270px] rounded-xl py-2 text-center text-base font-normal'>Upcoming lecture at 12:30</h2>
-          <div className='flex flex-col gap-2'>
-            <h1 className='text-4xl font-extrabold lg:text-5xl'>
-              {time}
-            </h1>
-            <p className='text-lg font-medium text-sky-300'>
-              {date}
-            </p>
-          </div>
-        </div>
+    // <section className='flex size-full flex-col gap-3 text-white'>
+    //   <div className='h-[250px] w-full rounded-[20px] bg-hero bg-cover'>
+    //     <div className='flex h-full flex-col justify-between max-md:px-5 max-md:py-8 lg:p-11'>
+    //       <h2 className='glassmorphism max-w-[270px] rounded-xl py-2 text-center text-base font-normal'>Upcoming lecture at 12:30</h2>
+    //       <div className='flex flex-col gap-2'>
+    //         <h1 className='text-4xl font-extrabold lg:text-5xl'>
+    //           {time}
+    //         </h1>
+    //         <p className='text-lg font-medium text-sky-300'>
+    //           {date}
+    //         </p>
+    //       </div>
+    //     </div>
+    //   </div>
+    //   <HomeBox/>
+    // </section>
+    <div>
+      <div className='flex justify-center border-b pb-2'>
+        <h1 className='text-[24px]'>WELCOME TO <span className='text-blue-1 font-bold'>ZERO | CAMPUS</span></h1>
       </div>
-      <HomeBox/>
-    </section>
+      <div className='flex justify-center pb-2 flex-col items-center mb-4 mt-4'>
+        <h1 className='text-[20px] mb-2 ml-1'>Developed by <span className='text-blue-1 font-bold'>Ashish Jadhav</span></h1>
+        <Image src='/images/students/profile2.png' width={150} height={150} className='aspect-square border-4 rounded-2xl' alt='profile'/>
+      </div>
+    </div>
   )
 }
 

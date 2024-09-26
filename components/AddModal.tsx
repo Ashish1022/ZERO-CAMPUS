@@ -71,7 +71,12 @@ const AddModal = () => {
                 studentId: data.studentid,
                 class: data.class,
                 address: data.address,
-                imageUrl: imageUrl
+                imageUrl: imageUrl,
+                ip: 0,
+                adsa: 0,
+                eeb: 0,
+                se: 0,
+                cns: 0
             })
             toast({ title: "Student added" })
             setIsSubmitting(false)
