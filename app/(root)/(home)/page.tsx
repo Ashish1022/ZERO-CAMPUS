@@ -24,16 +24,16 @@ const Home = () => {
     //       </div>
     //     </div>
     //   </div>
-    //   <HomeBox/>
     // </section>
     <div>
-      <div className='flex justify-center border-b pb-2'>
-        <h1 className='text-[24px]'>WELCOME TO <span className='text-blue-1 font-bold'>ZERO | CAMPUS</span></h1>
+      <div className='flex justify-center items-center pb-2 mt-[50px] mb-[50px]'>
+        <h1 className='text-[30px]'>WELCOME TO <span className='text-blue-1 font-bold'>ZERO | CAMPUS</span></h1>
       </div>
-      <div className='flex justify-center pb-2 flex-col items-center mb-4 mt-4'>
-        <h1 className='text-[20px] mb-2 ml-1'>Developed by <span className='text-blue-1 font-bold'>Ashish Jadhav</span></h1>
-        <Image src='/images/students/profile2.png' width={150} height={150} className='aspect-square border-4 rounded-2xl' alt='profile'/>
+      <div className='pb-1 mb-3 mt-3'>
+        <Image src='/images/students/profile2.png' width={200} height={200} className='aspect-square border-4 rounded-2xl' alt='profile' />
+        <h1 className='text-[20px] mt-1 ml-1'>Developed by <span className='text-blue-1 font-bold'>Ashish Jadhav</span></h1>
       </div>
+      <HomeBox/>
     </div>
   )
 }

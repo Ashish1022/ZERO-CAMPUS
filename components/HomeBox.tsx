@@ -14,31 +14,31 @@ const HomeBox = () => {
         <section className='grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4'>
             <HomeCard
                 img='/icons/student.svg'
-                title='2'
+                title='10'
                 description='Students'
                 handleClick={() => { }}
-                className='bg-green-400'
+                className='bg-orange-1'
             />
             <HomeCard
                 img='/icons/teacher.svg'
-                title='2'
+                title='3'
                 description='Teachers'
                 handleClick={() => { }}
-                className='bg-purple-400'
+                className='bg-blue-1'
             />
             <HomeCard
                 img='/icons/classes.svg'
-                title='2'
+                title='5'
                 description='Classes'
                 handleClick={() => { }}
-                className='bg-orange-400'
+                className='bg-purple-1'
             />
             <HomeCard
                 img='/icons/profile.svg'
-                title='2'
+                title='10'
                 description='Students present today'
                 handleClick={() => { }}
-                className='bg-yellow-400'
+                className='bg-yellow-1'
             />
         </section>
     )
