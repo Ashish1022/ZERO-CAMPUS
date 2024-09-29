@@ -43,9 +43,8 @@ import { api } from "@/convex/_generated/api"
 import StudentAttendanceCard from "@/components/StudentAttendanceCard"
 
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "",
-  }),
+  class: z.string(),
+  date: z.string(),
 })
 
 const Attendence = () => {
@@ -57,13 +56,11 @@ const Attendence = () => {
 
   const students = useQuery(api.student.getAllStudents);
 
-  
-  
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      class: "",
+      date: "",
     },
   })
 
@@ -83,14 +80,14 @@ const Attendence = () => {
             <div className="flex gap-5 w-full max-md:flex-col">
               <FormField
                 control={form.control}
-                name="username"
+                name="class"
                 render={({ field }) => (
                   <FormItem className="md:w-[25%]">
                     <FormLabel className="font-bold tracking-wide text-[16px]">Select Class</FormLabel>
                     <FormControl>
                       <Select>
                         <SelectTrigger className="">
-                          <SelectValue placeholder="Select Class" />
+                          <SelectValue placeholder="Select Class"/>
                         </SelectTrigger>
                         <SelectContent className="bg-dark-1">
                           <SelectItem value="ip" className="text-white">IP</SelectItem>
@@ -107,7 +104,7 @@ const Attendence = () => {
               />
               <FormField
                 control={form.control}
-                name="username"
+                name="date"
                 render={({ field }) => (
                   <FormItem className="md:w-[25%] flex flex-col">
                     <FormLabel className="font-bold tracking-wide text-[16px]">Attendance Date</FormLabel>

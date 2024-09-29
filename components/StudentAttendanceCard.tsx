@@ -25,8 +25,8 @@ const StudentAttendanceCard = ({ firstname, lastname, imageUrl, studentId }: { f
                 <p className='text-white truncate'>{firstname} {lastname}</p>
             </div>
             <div className='flex gap-5'>
-                <Button className='bg-green-600' onClick={handleUpdateClick}>P</Button>
-                <Button className='bg-gray-600' onClick={handleCancelClick}>A</Button>
+                <Button className='bg-green-500 border' onClick={handleUpdateClick}>P</Button>
+                <Button className='bg-red-500 border' onClick={handleCancelClick}>A</Button>
             </div>
         </div>
     )
