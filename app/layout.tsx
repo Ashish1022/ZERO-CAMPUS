@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import ToasterProvider from "@/components/providers/ToasterProvider";
+import ConfettiProvider from "@/components/providers/ConfettiProvider";
+import { Toaster } from "@/components/ui/toaster";
+import '@stream-io/video-react-sdk/dist/css/styles.css';
+import 'react-datepicker/dist/react-datepicker.css'
+import ConvexClerkProvider from "@/providers/ConvexClerkProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,12 +31,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    // <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <ConvexClerkProvider>
+            <ConfettiProvider />
+            <ToasterProvider />
+            {children}
+            <Toaster />
+          </ConvexClerkProvider>
+
+        </body>
+      </html>
+    // </ClerkProvider>
   );
 }
