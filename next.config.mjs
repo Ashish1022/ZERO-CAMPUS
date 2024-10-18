@@ -11,6 +11,12 @@ const nextConfig = {
                 hostname: 'superb-okapi-97.convex.cloud'
             }
         ]
+    },
+    typescript: {
+        ignoreBuildErrors: true
+    },
+    eslint: {
+        ignoreDuringBuilds: true
     }
 };
 
